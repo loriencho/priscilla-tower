@@ -15,22 +15,21 @@ public class Graph : MonoBehaviour
 
 
 
+
     void Awake() {
-        Vector3 scale = Vector2.one * 19/size;
+        Vector2 scale = Vector2.one * 19/size;
         Vector2 position;
 
         position.y = 0f;
         projectiles = new Transform[size];
 
-        for (int i = 0; i < projectiles.Length; i++) {
+        for (int i = 1; i < size; i += .2) {
             Transform projectile = Instantiate(projectilePrefab);
-            position.x = (i + .5f) * 19/size - horizontal;
-            projectile.localPosition = position;
+            position.x = i;
             projectile.localScale = scale;
             projectile.SetParent(transform, false);
 
             projectiles[i] = projectile;
-
 
         }
 
@@ -38,11 +37,11 @@ public class Graph : MonoBehaviour
 
     void Update() {
 
-        int b = Mathf.PingPong(Time.time, 10));
+        float b = Mathf.PingPong(Time.time, 10);
         for (int i = 0; i < projectiles.Length; i++) {
             Transform projectile = projectiles[i];
             Vector3 position = projectile.localPosition;
-            position.y = (x*b*(Mathf.Cos(x +b) - Mathf.Sin(x + b))
+            position.y = position.x*b*(Mathf.Cos(position.x + b) - Mathf.Sin(position.x + b));
             projectile.localPosition = position;
 
         }
