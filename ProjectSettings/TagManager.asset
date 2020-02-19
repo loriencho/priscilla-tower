@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Projectiles
+  - PlayerProjectiles
+  - Player
+  - Collectables
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Middle
+    uniqueID: 1710531275
+    locked: 0
+  - name: Front
+    uniqueID: 2317234871
+    locked: 0
+  - name: Projectiles
+    uniqueID: 340318411
+    locked: 0
+  - name: EndCard
+    uniqueID: 1436613799
     locked: 0
