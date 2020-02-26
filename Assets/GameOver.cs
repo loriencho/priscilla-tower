@@ -7,11 +7,19 @@ public class GameOver : MonoBehaviour
     public GameObject endCard;
     public ParticleSystem explosion;
 
+    private SpriteRenderer sr;
+
     void Start()
     {
         explosion.Stop();
         endCard.SetActive(false);
         StartCoroutine("WaitForCollision");
+
+        sr =  endCard.GetComponent<SpriteRenderer>(); 
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+
+        endCard.transform.localPosition = new Vector3(endCard.transform.localPosition.x, 123f, endCard.transform.localPosition.z);
+
     }
 
     IEnumerator WaitForCollision(){
@@ -20,16 +28,14 @@ public class GameOver : MonoBehaviour
         while ( !(Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), 1.2f, layerMask, 10f, 10f))) {
             yield return null;
 
-        }
-        
+        }        
         explosion.transform.position = transform.position;
         explosion.Play();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         explosion.Stop();
 
-        Debug.Log("HI");
-        StartCoroutine("SlideIntoPlace");
+        StartCoroutine("fadeIn");
 
     }
 
@@ -44,4 +50,29 @@ public class GameOver : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator fadeIn()
+    {
+        endCard.SetActive(true);
+        float counter = 0;
+        //Get current color
+        int duration = 1;
+
+        Color spriteColor = sr.material.color;
+        sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0);
+
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            float alpha = Mathf.Lerp(0, 1, counter / duration);
+            Debug.Log(alpha);
+
+            sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
+            yield return null;
+        }
+    }
+
+    
+
+    
 }

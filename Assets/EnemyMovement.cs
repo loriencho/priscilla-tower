@@ -7,13 +7,14 @@ public class EnemyMovement : MonoBehaviour
 
     private ProjectilePools projectilePools;
     public float z;
+    public float projectileWait;
         
 
     void Start()
     {
         projectilePools = ProjectilePools.Instance;
 
-        InvokeRepeating("SpawnProjectile", 1.0f, 1.0f);
+        InvokeRepeating("SpawnProjectile", 1.0f, projectileWait + Time.deltaTime);
 
         StartCoroutine("Waiter");
         
@@ -36,9 +37,10 @@ public class EnemyMovement : MonoBehaviour
         while (gameObject.activeSelf)  {
 
             transform.position = new Vector3(transform.position.x -.5f - .5f * Time.deltaTime, transform.position.y, transform.position.z);
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(projectileWait + Time.deltaTime);
 
         }
+        yield return null;
     }
 
     IEnumerator Rotate() {
@@ -60,6 +62,11 @@ public class EnemyMovement : MonoBehaviour
             transform.position = new Vector3 (transform.position.x, transform.position.y, 10f);
             
             projectile = projectilePools.SpawnFromPool("EnemyProjectile", transform.position, Quaternion.Euler(0, 0, z));
+
+            if (z > 360) {
+                z += 30 + Time.deltaTime;
+            }
+
         }
         else {
             CancelInvoke();

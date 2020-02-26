@@ -38,27 +38,27 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (Input.GetKey("up")) {
-            if (transform.position.y != 13f) {
-                transform.position = new Vector3(transform.position.x, transform.position.y + .25f, -2f);
+            if (!(transform.position.y >= 13f)) {
+                transform.position = new Vector3(transform.position.x, transform.position.y + .25f + Time.deltaTime, -2f);
             }
         }
 
         if (Input.GetKey("down")) {
-            if (transform.position.y != -13f) {
-                transform.position = new Vector3(transform.position.x, transform.position.y - .25f,-2f);
+            if (!(transform.position.y <= -13f)) {
+                transform.position = new Vector3(transform.position.x, transform.position.y - .25f - Time.deltaTime,-2f);
             }
         }
 
         if (Input.GetKey("right")) {
-            if (transform.position.x != 25f) {
-                transform.position = new Vector3(transform.position.x + .25f, transform.position.y,-2f);
+            if (!(transform.position.x >= 25f)) {
+                transform.position = new Vector3(transform.position.x + .25f + Time.deltaTime, transform.position.y,-2f);
             }
 
         }
 
         if (Input.GetKey("left")) {
-            if (transform.position.x != -25f) {
-                transform.position = new Vector3(transform.position.x - .25f, transform.position.y,-2f);
+            if (!(transform.position.x <= -25f)) {
+                transform.position = new Vector3(transform.position.x - .25f - Time.deltaTime, transform.position.y,-2f);
          }
         }
 

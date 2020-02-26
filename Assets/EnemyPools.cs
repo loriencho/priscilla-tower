@@ -13,7 +13,7 @@ public class EnemyPools : MonoBehaviour
         public int posX;
         public int posY;
         public int z;
-
+        public float projectileWait;
         public int endPosX;
         public int endPosY;
 
@@ -28,7 +28,11 @@ public class EnemyPools : MonoBehaviour
     {
         foreach(Enemy enemy in enemies) {
             GameObject obj = Instantiate(enemy.prefab);
+            EnemyMovement script = obj.GetComponent<EnemyMovement>();
             obj.transform.position = new Vector3(enemy.posX, enemy.posY, 0);
+
+            script.projectileWait = enemy.projectileWait;
+            script.z = enemy.z;
             obj.SetActive(false); 
             EnemyPool.Add(obj);
         }
