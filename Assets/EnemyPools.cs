@@ -12,7 +12,9 @@ public class EnemyPools : MonoBehaviour
         public GameObject prefab;
         public int posX;
         public int posY;
-        public int z;
+        public int min;
+        public int max;
+        public float pause;
         public float projectileWait;
         public int endPosX;
         public int endPosY;
@@ -32,7 +34,9 @@ public class EnemyPools : MonoBehaviour
             obj.transform.position = new Vector3(enemy.posX, enemy.posY, 0);
 
             script.projectileWait = enemy.projectileWait;
-            script.z = enemy.z;
+            script.min = enemy.min;
+            script.max = enemy.max;
+            script.pause = enemy.pause;
             obj.SetActive(false); 
             EnemyPool.Add(obj);
         }

@@ -6,7 +6,7 @@ public class ProjectileMovement : MonoBehaviour
 {
     void Start()
     {
-
+        CancelInvoke();
         InvokeRepeating("Move", 0f, .05f);
 
         StartCoroutine("CheckBounds");
@@ -16,15 +16,9 @@ public class ProjectileMovement : MonoBehaviour
         transform.position -= transform.right * Time.deltaTime * 60f;
     }
 
-    void OnBecameInvisible()
-    {
-        CancelInvoke();
-        gameObject.SetActive(false);
-    }
-
     IEnumerator CheckBounds(){
 
-        if (transform.position.x < -33f) {
+        if (transform.localPosition.x < -33f) {
             CancelInvoke();
             gameObject.SetActive(false);
             yield return null;

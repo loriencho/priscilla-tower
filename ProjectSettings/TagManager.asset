@@ -50,6 +50,9 @@ TagManager:
   - name: Projectiles
     uniqueID: 340318411
     locked: 0
+  - name: Player
+    uniqueID: 4294831533
+    locked: 0
   - name: EndCard
     uniqueID: 1436613799
     locked: 0

@@ -6,7 +6,10 @@ public class EnemyMovement : MonoBehaviour
 {
 
     private ProjectilePools projectilePools;
-    public float z;
+    public float min;
+    public float max;
+
+    public float pause;
     public float projectileWait;
         
 
@@ -14,7 +17,9 @@ public class EnemyMovement : MonoBehaviour
     {
         projectilePools = ProjectilePools.Instance;
 
-        InvokeRepeating("SpawnProjectile", 1.0f, projectileWait + Time.deltaTime);
+
+
+        InvokeRepeating("SpawnProjectile", 1.0f, projectileWait);
 
         StartCoroutine("Waiter");
         
@@ -24,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator Waiter() {
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         
         StartCoroutine("Move");
 
@@ -37,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
         while (gameObject.activeSelf)  {
 
             transform.position = new Vector3(transform.position.x -.5f - .5f * Time.deltaTime, transform.position.y, transform.position.z);
-            yield return new WaitForSeconds(projectileWait + Time.deltaTime);
+            yield return new WaitForSeconds(.05f);
 
         }
         yield return null;
@@ -53,19 +58,27 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void SpawnProjectile() {
-        
+        int z = min;
+        bool mode = 0;
+
         if (gameObject.activeSelf) {
 
             GameObject projectile;
             
 
             transform.position = new Vector3 (transform.position.x, transform.position.y, 10f);
+
+            
+            if (!mode) {
+                z += 30 + Time.deltaTime;
+            }
+            if (mode) {
+                z -= 30 + Time.deltaTime;
+            }
             
             projectile = projectilePools.SpawnFromPool("EnemyProjectile", transform.position, Quaternion.Euler(0, 0, z));
 
-            if (z > 360) {
-                z += 30 + Time.deltaTime;
-            }
+            if min 
 
         }
         else {

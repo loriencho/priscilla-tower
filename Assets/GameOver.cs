@@ -35,6 +35,7 @@ public class GameOver : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         explosion.Stop();
 
+        StartCoroutine("SlideIntoPlace");
         StartCoroutine("fadeIn");
 
     }
