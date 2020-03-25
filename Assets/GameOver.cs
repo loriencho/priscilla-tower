@@ -25,7 +25,7 @@ public class GameOver : MonoBehaviour
     IEnumerator WaitForCollision(){
         LayerMask layerMask = LayerMask.GetMask("Projectiles");
 
-        while ( !(Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), 1.2f, layerMask, 10f, 10f))) {
+        while ( !(Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), 1.15f, layerMask, 10f, 10f))) {
             yield return null;
 
         }        
@@ -56,7 +56,6 @@ public class GameOver : MonoBehaviour
     {
         endCard.SetActive(true);
         float counter = 0;
-        //Get current color
         int duration = 1;
 
         Color spriteColor = sr.material.color;
@@ -66,7 +65,6 @@ public class GameOver : MonoBehaviour
         {
             counter += Time.deltaTime;
             float alpha = Mathf.Lerp(0, 1, counter / duration);
-            Debug.Log(alpha);
 
             sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
             yield return null;

@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class ProjectileMovement : MonoBehaviour
 {
-    void Start()
-    {
-        CancelInvoke();
-        InvokeRepeating("Move", 0f, .05f);
 
-        StartCoroutine("CheckBounds");
+
+    void Start() {
+        InvokeRepeating("Move", 0f, .03f);
     }
-
     void Move() {
-        transform.position -= transform.right * Time.deltaTime * 60f;
+        transform.position -= transform.right * Time.deltaTime * 45f;
+        CheckBounds();
     }
 
-    IEnumerator CheckBounds(){
+    void CheckBounds(){
 
-        if (transform.localPosition.x < -33f) {
-            CancelInvoke();
+        if (transform.localPosition.x < -33f || transform.localPosition.x > 35f) {
             gameObject.SetActive(false);
-            yield return null;
         }
-
-        yield return new WaitForSeconds(2f);
-
     }
 
 }

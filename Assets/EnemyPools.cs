@@ -14,10 +14,14 @@ public class EnemyPools : MonoBehaviour
         public int posY;
         public int min;
         public int max;
+        public int clockwise;
         public float pause;
         public float projectileWait;
         public int endPosX;
         public int endPosY;
+        public int start;
+        public int increment;
+        public int amt;
 
     }
     
@@ -37,6 +41,10 @@ public class EnemyPools : MonoBehaviour
             script.min = enemy.min;
             script.max = enemy.max;
             script.pause = enemy.pause;
+            script.clockwise = enemy.clockwise;
+            script.start = enemy.start;
+            script.increment= enemy.increment;
+            script.amt = enemy.amt;
             obj.SetActive(false); 
             EnemyPool.Add(obj);
         }
@@ -60,9 +68,6 @@ public class EnemyPools : MonoBehaviour
 
             enemyObj.SetActive(true);
 
-            ProjectileSpawner projectileSpawner = enemyObj.GetComponent<ProjectileSpawner>();
-            projectileSpawner.enabled = false;
-
             float timeSinceStarted = 0f;
 
             while (enemyObj.transform.position != newPosition) {
@@ -72,20 +77,8 @@ public class EnemyPools : MonoBehaviour
                 yield return null;
             }
 
-            // projectileSpawner.enabled = true;
-
         }
     }
 
-    // IEnumerator MoveFunction()
-    // {
-    //     float timeSinceStarted = 0f;
-    //     while (gameObject.transform.position != (newPosition))
-    //     {
-    //         timeSinceStarted += Time.DeltaTime;
-    //         obj.transform.position = Vector3.Lerp(obj.transform.position, newPosition, timeSinceStarted);
-
-    //         yield return null;
-    //     }
 
 }

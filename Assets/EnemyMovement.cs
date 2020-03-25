@@ -6,19 +6,27 @@ public class EnemyMovement : MonoBehaviour
 {
 
     private ProjectilePools projectilePools;
-    public float min;
-    public float max;
+    public int min;
+    public int max;
+    public int clockwise;
 
     public float pause;
     public float projectileWait;
+
+    public int start;
+    public int increment;
+    public int amt;
+
+    private float z;
+    private int mode = 0;
+
         
 
     void Start()
     {
         projectilePools = ProjectilePools.Instance;
 
-
-
+        z = min;
         InvokeRepeating("SpawnProjectile", 1.0f, projectileWait);
 
         StartCoroutine("Waiter");
@@ -29,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator Waiter() {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(pause);
         
         StartCoroutine("Move");
 
@@ -58,9 +66,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void SpawnProjectile() {
-        int z = min;
-        bool mode = 0;
 
+        if (min == 361) {
+            mode = 2;
+        }
         if (gameObject.activeSelf) {
 
             GameObject projectile;
@@ -68,17 +77,32 @@ public class EnemyMovement : MonoBehaviour
 
             transform.position = new Vector3 (transform.position.x, transform.position.y, 10f);
 
-            
-            if (!mode) {
-                z += 30 + Time.deltaTime;
-            }
-            if (mode) {
-                z -= 30 + Time.deltaTime;
-            }
-            
-            projectile = projectilePools.SpawnFromPool("EnemyProjectile", transform.position, Quaternion.Euler(0, 0, z));
+            if (min != max ){
+                z += (20 + Time.deltaTime) * clockwise;
+                if (mode == 1) {
+                    z -= (40 + Time.deltaTime) * clockwise;
+                }
 
-            if min 
+                if (z >= max && mode == 0) {
+                    mode = 1;
+                }
+
+                else if (z <= min && mode == 1) {
+                    mode = 0;
+                }
+            }
+            else {
+                z = min;
+            }
+
+
+            for (int i = 0; i < amt; i++ ) {
+                projectile = projectilePools.SpawnFromPool("EnemyProjectile", transform.position, Quaternion.Euler(0, 0, start + increment * i + z));
+                
+            }   
+                
+            
+
 
         }
         else {

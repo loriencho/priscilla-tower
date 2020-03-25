@@ -175,8 +175,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -135763
-  m_SortingLayer: 4
+  m_SortingLayerID: -1977732425
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a7b8338b4c8dfb4d994fd9c72871b97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -432,7 +432,7 @@ MonoBehaviour:
   - tag: PlayerProjectile
     prefab: {fileID: 4881265521872190997, guid: 5ba074cf9668a8440b2c0a419ea3597b,
       type: 3}
-    size: 150
+    size: 50
   - tag: EnemyProjectile
     prefab: {fileID: 7818581856869842136, guid: 9ee8d93966662ed44bbf42ee8b2d3b59,
       type: 3}
@@ -564,8 +564,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
-  m_Children:
-  - {fileID: 1773993456}
+  m_Children: []
   m_Father: {fileID: 100746994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -605,11 +604,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 340318411
-  m_SortingLayer: 3
+  m_SortingLayerID: -135763
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b20f9a20e5683da46a9cb8cdd5c5f3d6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -660,7 +659,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2212008a38724af4cb44a5d32270db31, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc47f3889e2d0c74981b6c5c5cbdf96f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -790,56 +789,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - timeToSpawn: 3
+  - timeToSpawn: 1.7
     prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
       type: 3}
     posX: 40
     posY: 25
-    z: 361
-    pause: 0.5
-    projectileWait: 0.16667
+    min: 0
+    max: 0
+    clockwise: 1
+    pause: 2.58
+    projectileWait: 0.64
     endPosX: 25
     endPosY: 10
-  - timeToSpawn: 3
+    start: 0
+    increment: 0
+    amt: 1
+  - timeToSpawn: 0.32
     prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
       type: 3}
     posX: 40
     posY: -25
-    z: 0
-    pause: 0.5
-    projectileWait: 0.16667
+    min: 0
+    max: 0
+    clockwise: -1
+    pause: 2
+    projectileWait: 0.64
     endPosX: 25
     endPosY: -10
-  - timeToSpawn: 100
+    start: 0
+    increment: 0
+    amt: 1
+  - timeToSpawn: 0.96
     prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
       type: 3}
     posX: 40
     posY: 0
-    z: 90
+    min: 361
+    max: 0
+    clockwise: 0
     pause: 0
     projectileWait: 0
     endPosX: 25
     endPosY: 0
-  - timeToSpawn: 100
+    start: 0
+    increment: 20
+    amt: 18
+  - timeToSpawn: 0.32
     prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
       type: 3}
     posX: 40
-    posY: 20
-    z: 12
-    pause: 0
-    projectileWait: 0
-    endPosX: 20
-    endPosY: -15
-  - timeToSpawn: 100
+    posY: 25
+    min: 0
+    max: 90
+    clockwise: 1
+    pause: 0.64
+    projectileWait: 0.21
+    endPosX: 25
+    endPosY: 10
+    start: 0
+    increment: 0
+    amt: 1
+  - timeToSpawn: 0
     prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
       type: 3}
     posX: 40
-    posY: -20
-    z: 361
-    pause: 0
-    projectileWait: 0
-    endPosX: 20
-    endPosY: 15
+    posY: -25
+    min: 0
+    max: 90
+    clockwise: -1
+    pause: 0.64
+    projectileWait: 0.21
+    endPosX: 25
+    endPosY: -10
+    start: 0
+    increment: 0
+    amt: 1
+  - timeToSpawn: 0.96
+    prefab: {fileID: 7899016610592507971, guid: a933052bde045174b9ef2d1dbc459276,
+      type: 3}
+    posX: 40
+    posY: 0
+    min: 0
+    max: 180
+    clockwise: 1
+    pause: 0.64
+    projectileWait: 0.32
+    endPosX: 25
+    endPosY: 0
+    start: -90
+    increment: 180
+    amt: 2
   EnemyPool: []
 --- !u!4 &1012950420
 Transform:
@@ -5723,8 +5762,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 08fd38553d83e14459bc809a4950527b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0e8f5ce44190f4a4e9c275daaf3aa2c2, type: 3}
+  m_Color: {r: 0.735849, g: 0.53380454, b: 0.32974365, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5741,13 +5780,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659013621}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -6.87, y: 4.87, z: 0}
-  m_LocalScale: {x: 1.22, y: 1.17, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773993454
 GameObject:
   m_ObjectHideFlags: 0
@@ -5804,8 +5843,8 @@ SpriteRenderer:
   m_SortingLayerID: 1436613799
   m_SortingLayer: 5
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 782a541a5cf6a0c49928f565d56ed77d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bfcf49f55461d5d49bdf9ab05f7782ad, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5823,11 +5862,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773993454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 275, y: 475, z: 12.5}
-  m_LocalScale: {x: 42.25, y: 42.25, z: 42.25}
+  m_LocalPosition: {x: 0, y: 38, z: 0}
+  m_LocalScale: {x: 3.3799999, y: 3.3799999, z: 3.3799999}
   m_Children: []
-  m_Father: {fileID: 600671706}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2060853631
 GameObject:

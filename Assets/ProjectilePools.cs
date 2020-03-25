@@ -47,6 +47,7 @@ public class ProjectilePools : MonoBehaviour
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation) {
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        objectToSpawn.SetActive(false);
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
