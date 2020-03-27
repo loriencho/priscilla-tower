@@ -56,3 +56,6 @@ TagManager:
   - name: EndCard
     uniqueID: 1436613799
     locked: 0
+  - name: EndText
+    uniqueID: 2580989653
+    locked: 0

@@ -5,18 +5,26 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
     public GameObject endCard;
+    public GameObject over;
+    public GameObject again;
     public ParticleSystem explosion;
 
     private SpriteRenderer sr;
+    private SpriteRenderer sr2;
+    private SpriteRenderer sr3;
+
 
     void Start()
     {
         explosion.Stop();
         endCard.SetActive(false);
+        over.SetActive(false);
+        again.SetActive(false);
         StartCoroutine("WaitForCollision");
 
         sr =  endCard.GetComponent<SpriteRenderer>(); 
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+        sr2 =  over.GetComponent<SpriteRenderer>(); 
+        sr3 =  again.GetComponent<SpriteRenderer>(); 
 
         endCard.transform.localPosition = new Vector3(endCard.transform.localPosition.x, 123f, endCard.transform.localPosition.z);
 
@@ -54,19 +62,26 @@ public class GameOver : MonoBehaviour
 
     IEnumerator fadeIn()
     {
+        over.SetActive(true);
+        again.SetActive(true);
         endCard.SetActive(true);
         float counter = 0;
-        int duration = 1;
+        float duration = 1f;
 
-        Color spriteColor = sr.material.color;
-        sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0);
+        sr.color = new Color(188f, 136f, 84f, 0);
+        sr2.color = new Color(0, 0, 0, 1);
+        sr3.color = new Color(0, 0, 0, 1);
 
         while (counter < duration)
         {
             counter += Time.deltaTime;
-            float alpha = Mathf.Lerp(0, 1, counter / duration);
+            float alpha = Mathf.Lerp(0, 1f, counter / duration);
 
-            sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
+            sr.color = new Color(188f/255f, 136f/255f, 84f/255f, alpha);
+            sr2.color = new Color(1, 1, 1, alpha);
+            sr3.color = new Color(1, 1, 1, alpha);
+
+
             yield return null;
         }
     }

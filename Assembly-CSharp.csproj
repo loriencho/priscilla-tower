@@ -49,6 +49,7 @@
      <Compile Include="Assets\EnemyMovement.cs" />
      <Compile Include="Assets\EnemyPools.cs" />
      <Compile Include="Assets\GameOver.cs" />
+     <Compile Include="Assets\PlayAgain.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\ProjectileMovement.cs" />
      <Compile Include="Assets\ProjectilePools.cs" />

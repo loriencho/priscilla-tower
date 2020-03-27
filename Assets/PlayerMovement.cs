@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private ProjectilePools projectilePools;
+    private int direction = 180;
 
     void Start( ){
 
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
             GameObject projectile;
 
                 transform.position = new Vector3 (transform.position.x, transform.position.y, 10f);
-                Quaternion rotation = Quaternion.Euler(0, 0, 180);
+                Quaternion rotation = Quaternion.Euler(0, 0, direction);
                 
                 projectile = projectilePools.SpawnFromPool("PlayerProjectile", transform.position, rotation);
 
@@ -63,6 +64,15 @@ public class PlayerMovement : MonoBehaviour
             if (!(transform.position.x <= -25f)) {
                 transform.position = new Vector3(transform.position.x - .25f - Time.deltaTime, transform.position.y,-2f);
          }
+        }
+
+
+        if (Input.GetKey("a")) {
+            direction -= 90;
+        }
+
+        if (Input.GetKey("d")) {
+            direction += 90;
         }
 
     }
